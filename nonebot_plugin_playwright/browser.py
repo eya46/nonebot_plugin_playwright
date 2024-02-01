@@ -36,11 +36,11 @@ async def browser_init(**kwargs):
     default_kwargs.update(config.playwright_extra_kwargs)
     global _PLAYWRIGHT, _BROWSER
     if config.playwright_browser in ["chromium", "chrome", "chrome-beta", "msedge", "msedge-beta", "msedge-dev"]:
-        _BROWSER = await _PLAYWRIGHT.chromium.launch(**kwargs)
+        _BROWSER = await _PLAYWRIGHT.chromium.launch(**default_kwargs)
     elif config.playwright_browser in ["firefox", "firefox-asan"]:
-        _BROWSER = await _PLAYWRIGHT.firefox.launch(**kwargs)
+        _BROWSER = await _PLAYWRIGHT.firefox.launch(**default_kwargs)
     else:
-        _BROWSER = await _PLAYWRIGHT.webkit.launch(**kwargs)
+        _BROWSER = await _PLAYWRIGHT.webkit.launch(**default_kwargs)
 
 
 def playwright_install(browser: str, download_host: str = config.playwright_download_host):

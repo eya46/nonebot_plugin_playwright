@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "nonebot-plugin-playwright"
-version = "0.1.1"
+version = "0.1.2"
 description = "NoneBot Playwright插件"
 authors = ["eya46 <61458340+eya46@users.noreply.github.com>"]
 readme = "README.md"
