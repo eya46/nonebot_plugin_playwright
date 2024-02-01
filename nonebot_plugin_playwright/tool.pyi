@@ -43,7 +43,7 @@ async def get_new_page(
         record_har_url_filter: str | typing.Pattern[str] | None = None,
         record_har_mode: typing.Literal["full", "minimal"] | None = None,
         record_har_content: typing.Literal["attach", "embed", "omit"] | None = None
-) -> Page:
+) -> typing.AsyncGenerator[Page, None]:
     ...
 
 
@@ -84,7 +84,7 @@ async def GetNewPage(
         record_har_url_filter: str | typing.Pattern[str] | None = None,
         record_har_mode: typing.Literal["full", "minimal"] | None = None,
         record_har_content: typing.Literal["attach", "embed", "omit"] | None = None
-) -> Page:
+):
     ...
 
 
@@ -125,5 +125,5 @@ async def NewPage(
         record_har_url_filter: str | typing.Pattern[str] | None = None,
         record_har_mode: typing.Literal["full", "minimal"] | None = None,
         record_har_content: typing.Literal["attach", "embed", "omit"] | None = None
-) -> Page:
+):
     ...

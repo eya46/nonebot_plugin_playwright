@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from contextlib import asynccontextmanager
 from pathlib import Path
-from typing import AsyncIterator
+from typing import AsyncIterator, AsyncGenerator
 
 from nonebot import require
 from nonebot.params import Depends
@@ -27,7 +27,7 @@ except RuntimeError:
 @asynccontextmanager
 async def get_new_page(
         *, name: str | None = None, use_store: bool = True, save_store: bool = True, **kwargs
-) -> AsyncIterator[Page]:
+) -> AsyncGenerator[Page, None]:
     browser = get_browser()
     if _if_localstore and use_store and kwargs.get("storage_state") is None and name is not None:
         if (_p := plugin_data_dir / f"{name}.json").exists():
@@ -39,11 +39,6 @@ async def get_new_page(
                 await context.storage_state(path=plugin_data_dir / f"{kwargs.get('storage_state')}.json")
             elif name is not None:
                 await context.storage_state(path=plugin_data_dir / f"{name}.json")
-    page = await browser.new_page(**kwargs)
-    try:
-        yield page
-    finally:
-        await page.close()
 
 
 def GetNewPage(**kwargs):
