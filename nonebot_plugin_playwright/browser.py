@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import asyncio
 import os
-import subprocess
 from time import time
 
 from nonebot import get_driver, logger
@@ -46,9 +45,9 @@ async def browser_init(**kwargs):
 def playwright_install(browser: str, download_host: str = config.playwright_download_host):
     os.environ["PLAYWRIGHT_DOWNLOAD_HOST"] = download_host
     logger.opt(colors=True).info(f"<y>Installing {browser}...</y>")
-    subprocess.Popen(["playwright", "install", browser])
+    os.system(f"playwright install {browser}")
     logger.opt(colors=True).info("<y>Installing dependencies...</y>")
-    subprocess.Popen(["playwright", "install-deps"])
+    os.system("playwright install-deps")
 
 
 @_driver.on_startup

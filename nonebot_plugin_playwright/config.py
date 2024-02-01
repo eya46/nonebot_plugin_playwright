@@ -13,7 +13,7 @@ class Config(BaseModel, extra=Extra.ignore):
         "chromium", description="指定 playwright 启动的浏览器"
     )
     playwright_download_host: str = Field(
-        default="https://npmmirror.com/mirrors/playwright/",
+        default="https://npmmirror.com/mirrors/playwright",
         description="指定 playwright 下载源"
     )
     playwright_headless: bool = Field(default=True, description="指定 playwright 是否以无头模式启动")
