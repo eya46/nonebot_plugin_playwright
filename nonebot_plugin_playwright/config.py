@@ -1,6 +1,5 @@
-from __future__ import annotations
-
-from typing import Literal
+from pathlib import Path
+from typing import Literal, Optional
 
 from nonebot import get_driver
 from pydantic import BaseModel, Extra, Field
@@ -17,7 +16,7 @@ class Config(BaseModel, extra=Extra.ignore):
         description="指定 playwright 下载源"
     )
     playwright_headless: bool = Field(default=True, description="指定 playwright 是否以无头模式启动")
-    playwright_executable_path: str | None = Field(
+    playwright_executable_path: Optional[Path] = Field(
         default=None, description="指定 playwright...launch 执行路径"
     )
     playwright_extra_kwargs: dict = Field(default_factory=dict, description="指定 playwright...launch 额外参数")

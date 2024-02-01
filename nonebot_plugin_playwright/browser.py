@@ -26,20 +26,13 @@ def get_browser() -> Browser:
 
 
 async def browser_init(**kwargs):
-    default_kwargs = {
-        "channel": config.playwright_browser,
-        "headless": config.playwright_headless,
-        "executable_path": config.playwright_executable_path
-    }
-    default_kwargs.update(kwargs)
-    default_kwargs.update(config.playwright_extra_kwargs)
     global _PLAYWRIGHT, _BROWSER
     if config.playwright_browser in ["chromium", "chrome", "chrome-beta", "msedge", "msedge-beta", "msedge-dev"]:
-        _BROWSER = await _PLAYWRIGHT.chromium.launch(**default_kwargs)
+        _BROWSER = await _PLAYWRIGHT.chromium.launch(**kwargs)
     elif config.playwright_browser in ["firefox", "firefox-asan"]:
-        _BROWSER = await _PLAYWRIGHT.firefox.launch(**default_kwargs)
+        _BROWSER = await _PLAYWRIGHT.firefox.launch(**kwargs)
     else:
-        _BROWSER = await _PLAYWRIGHT.webkit.launch(**default_kwargs)
+        _BROWSER = await _PLAYWRIGHT.webkit.launch(**kwargs)
 
 
 def playwright_install(browser: str, download_host: str = config.playwright_download_host):
@@ -59,7 +52,13 @@ async def playwright_init():
     else:
         logger.opt(colors=True).info(f"<y>Playwright executable path: {config.playwright_executable_path}</y>")
     logger.opt(colors=True).info(f"<y>Playwright started: {config.playwright_browser}</y>")
-    await browser_init(executable_path=config.playwright_executable_path)
+    default_kwargs = {
+        "channel": config.playwright_browser,
+        "headless": config.playwright_headless,
+        "executable_path": config.playwright_executable_path
+    }
+    default_kwargs.update(config.playwright_extra_kwargs)
+    await browser_init(**default_kwargs)
 
 
 async def playwright_close():
