@@ -1,13 +1,11 @@
-from __future__ import annotations
-
 from contextlib import asynccontextmanager
 from pathlib import Path
-from typing import AsyncIterator, AsyncGenerator
+from collections.abc import AsyncGenerator
 
 from nonebot import require
 from nonebot.params import Depends
 from playwright.async_api import Page
-from typing_extensions import Annotated
+from typing import Annotated
 
 from .browser import get_browser
 
@@ -26,7 +24,7 @@ except RuntimeError:
 
 @asynccontextmanager
 async def get_new_page(
-        *, name: str | None = None, use_store: bool = True, save_store: bool = True, **kwargs
+    *, name: str | None = None, use_store: bool = True, save_store: bool = True, **kwargs
 ) -> AsyncGenerator[Page, None]:
     browser = get_browser()
     if _if_localstore and use_store and kwargs.get("storage_state") is None and name is not None:

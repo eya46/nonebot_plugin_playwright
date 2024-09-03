@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 import asyncio
 import os
 from time import time
@@ -40,6 +38,7 @@ def playwright_install(browser: str, download_host: str = config.playwright_down
     logger.opt(colors=True).info(f"<y>Installing {browser}...</y>")
     from playwright.__main__ import main as playwright_main
     import sys
+
     sys.argv = ["", "install", browser, "--with-deps"]
     try:
         playwright_main()
@@ -56,7 +55,7 @@ async def playwright_init():
     default_kwargs = {
         "channel": config.playwright_browser,
         "headless": config.playwright_headless,
-        "executable_path": config.playwright_executable_path
+        "executable_path": config.playwright_executable_path,
     }
     default_kwargs.update(config.playwright_extra_kwargs)
     _PLAYWRIGHT = await async_playwright().start()
@@ -108,5 +107,10 @@ async def playwright_shutdown():
 
 
 __all__ = [
-    "get_playwright", "get_browser", "browser_init", "playwright_install", "playwright_init", "playwright_close",
+    "get_playwright",
+    "get_browser",
+    "browser_init",
+    "playwright_install",
+    "playwright_init",
+    "playwright_close",
 ]

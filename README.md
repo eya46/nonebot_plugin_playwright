@@ -6,9 +6,9 @@
 
 # NoneBot Plugin Playwright
 
-![License](https://img.shields.io/github/license/eya46/nonebot_plugin_nezha)
-![Python](https://img.shields.io/badge/python-3.8+-blue.svg)
-![NoneBot](https://img.shields.io/badge/nonebot-2.0.1+-red.svg)
+![License](https://img.shields.io/github/license/eya46/nonebot_plugin_playwright)
+![Python](https://img.shields.io/badge/python-3.9+-blue.svg)
+![NoneBot](https://img.shields.io/badge/nonebot-2.2.0+-red.svg)
 </div>
 
 ## 安装方式
@@ -44,7 +44,8 @@ playwright_shutdown_timeout
 ## 依赖
 
 ```toml
-nonebot2 = "^2.0.1"
+python = "^3.9"
+nonebot2 = ">=2.2.0"
 playwright = "^1.0.0"
-nonebot-plugin-localstore = { version = ">=0.5.0", optional = true }
+nonebot-plugin-localstore = { version = ">=0.7.1", optional = true }
 ```
